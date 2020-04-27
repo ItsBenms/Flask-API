@@ -141,15 +141,15 @@
             xhr.onload = function () {
                 if (this.status == 200) {
                     var users = JSON.parse(this.responseText);
-                    console.log(users)
+
                     var output = '';
-                    for (var i in users) {
+                    for (i in users.users) {
                         output +=
                             '<tr>' +
-                            '<td>' + users[i].email + '</td>' +
-                            '<td>' + users[i].firstName + '</td>' +
-                            '<td>' + users[i].id + '</td>' +
-                            '<td>' + users[i].lastName + '</td>' +
+                            '<td>' + users.users[i].email + '</td>' +
+                            '<td>' + users.users[i].firstName + '</td>' +
+                            '<td>' + users.users[i].id + '</td>' +
+                            '<td>' + users.users[i].lastName + '</td>' +
                             '</tr>'
                     }
                     document.getElementById('userBody').innerHTML = output;
