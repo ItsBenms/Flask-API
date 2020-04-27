@@ -85,6 +85,7 @@ def delete_user(id):
             del users[i]
     return jsonify({'users': users})
 
-
+##Here u were not running debugging mode which made it so that u have to reset the server every time u update the static content aka the HTML 
+##This is stupid and makes everything tedious af also im sure this must have caused u some confusion(it confused me for a moment)
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
