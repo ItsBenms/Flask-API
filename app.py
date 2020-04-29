@@ -7,37 +7,43 @@ users = [
         "id": 1,
         "firstName": "George",
         "lastName": "Bluth",
-        "email": "george.bluth@reqres.in"
+        "email": "george.bluth@reqres.in",
+        "avatar": "No Avatar Yet"
     },
     {
         "id": 2,
         "firstName": "Janet",
         "lastName": "Weaver",
-        "email": "janet.weaver@reqres.in"
+        "email": "janet.weaver@reqres.in",
+        "avatar": "No Avatar Yet"
     },
     {
         "id": 3,
         "firstName": "Emma",
         "lastName": "Wong",
-        "email": "emma.wong@reqres.in"
+        "email": "emma.wong@reqres.in",
+        "avatar": "No Avatar Yet"
     },
     {
         "id": 4,
         "firstName": "Eve",
         "lastName": "Holt",
-        "email": "eve.holt@reqres.in"
+        "email": "eve.holt@reqres.in",
+        "avatar": "No Avatar Yet"
     },
     {
         "id": 5,
         "firstName": "Charles",
         "lastName": "Morris",
-        "email": "charles.morris@reqres.in"
+        "email": "charles.morris@reqres.in",
+        "avatar": "No Avatar Yet"
     },
     {
         "id": 6,
         "firstName": "Tracey",
         "lastName": "Ramos",
-        "email": "tracey.ramos@reqres.in"
+        "email": "tracey.ramos@reqres.in",
+        "avatar": "No Avatar Yet"
     }
 ]
 
@@ -85,7 +91,6 @@ def delete_user(id):
             del users[i]
     return jsonify({'users': users})
 
-##Here u were not running debugging mode which made it so that u have to reset the server every time u update the static content aka the HTML 
-##This is stupid and makes everything tedious af also im sure this must have caused u some confusion(it confused me for a moment)
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -22,9 +22,9 @@
             <section id="sectUsers">
                 <h2>Users List</h2>
                 <div id="divPageNumber">Page <span id="pageNumber">1</span> of <span id="totalPages">2</span></div>
-                 <button id="update">Update Users</button><button id="btnPrevious">Previous</button><button id="btnNext">Next</button>
+                 <button id="btnPrevious">Previous</button><button id="btnNext">Next</button>
                 <table id="tblUsers">
-                    <tbody id="userBody">
+                    <thead  id="userHead">
                         <tr id="tblUserHeader">
                             <th>User ID</th>
                             <th>Email</th>
@@ -32,6 +32,8 @@
                             <th>Last Name</th>
                             <th>Avatar</th>
                         </tr>
+                    </thead>
+                    <tbody id="userBody">
                         <tr id="user1">
                             <td>1</td>
                             <td>george.bluth@reqres.in</td>
@@ -121,7 +123,7 @@
                         <label>Last Name:</label>
                         <input type="text" id="newUserLastName">
                         <div>
-                            <button id="btnNewUser">New User</button>
+                            <button type="submit" id="btnNewUser">New User</button>
                         </div>
                     </form>
                 </div>
@@ -132,7 +134,12 @@
 
 
 <script>
-    document.getElementById('update').addEventListener('click', loadUsers);
+
+    /* function to load all the users from the api */
+
+    document.addEventListener("DOMContentLoaded", () => {
+           loadUsers();
+        })
 
     function loadUsers() {
             var xhr = new XMLHttpRequest();
@@ -141,15 +148,21 @@
             xhr.onload = function () {
                 if (this.status == 200) {
                     var users = JSON.parse(this.responseText);
+                    //console.log(users)
+
+                    while (userBody.firstChild){
+                        userBody.removeChild(userBody.firstChild)
+                    }
 
                     var output = '';
                     for (i in users.users) {
                         output +=
                             '<tr>' +
+                            '<td>' + users.users[i].id + '</td>' +
                             '<td>' + users.users[i].email + '</td>' +
                             '<td>' + users.users[i].firstName + '</td>' +
-                            '<td>' + users.users[i].id + '</td>' +
                             '<td>' + users.users[i].lastName + '</td>' +
+                            '<td>' + users.users[i].avatar + '</td>' +
                             '</tr>'
                     }
                     document.getElementById('userBody').innerHTML = output;
@@ -157,6 +170,35 @@
             }
             xhr.send()
         }
+
+        /* Function to add users to the api when user form is entered */
+
+              document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById("btnNewUser").addEventListener("click", addUser)
+        })
+
+        const addUser = function (ev) {
+            ev.preventDefault();
+            //let users = [];
+            let user = {
+                id: document.getElementById("newUserID").value,
+                email: document.getElementById("newUserEmail").value,
+                firstName: document.getElementById("newUserFirstName").value,
+                lastName: document.getElementById("newUserLastName").value
+            }
+            //users.push(user); //pushes to array
+            document.getElementById("frmNewUser").reset();
+            //console.log(users)
+            let json = JSON.stringify(user); //array to json string
+            console.log(json)
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST", "/users/all", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(json);
+        }
+
 </script>
 </body>
 
