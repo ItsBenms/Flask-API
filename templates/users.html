@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Users</title>
+    <title>APP Single Page Application</title>
     <meta name="description" content="APP Web Task 5">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="SitePoint">
@@ -11,15 +11,15 @@
     <script src="{{ url_for('static', filename='app.js') }}"></script>
 </head>
 
-<body>
+<body onload="updateUserPop()"> <!-- Runs updateUserPop function on page load -->
     <div class="grid-container">
         <div class="grid-item header">
             <header>
-                <h2><b>APP Single Page App</b></h2>
+                <h2><b>APP Single Page Application</b></h2>
             </header>
         </div>
         <div class="grid-item one">
-            <section id="sectUsers">
+            <section id="sectUsers"> <!-- Table of all users -->
                 <h2>Users List</h2>
                 <div id="divPageNumber">Page <span id="pageNumber">1</span> of <span id="totalPages">2</span></div>
                  <button id="btnPrevious">Previous</button><button id="btnNext">Next</button>
@@ -88,7 +88,7 @@
         </div>
         <div class="grid-item two">
             <section id="sectUser">
-                <h2>Update User</h2>
+                <h2>Update User</h2> <!-- Updating user section And Deleting User section-->
                 <div>
                     <img id="userAvatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg"
                         alt="avatar">
@@ -102,8 +102,8 @@
                         <label>Last Name:</label>
                         <input type="text" id="userLastName">
                         <div>
-                            <button id="btnSaveUser">Save Changes</button>
-                            <button id="btnDeleteUser">Delete User</button>
+                            <button type="submit" id="btnSaveUser">Save Changes</button>
+                            <button type="submit" id="btnDeleteUser">Delete User</button>
                         </div>
                     </form>
                 </div>
@@ -113,7 +113,7 @@
             <section id="sectNewUser">
                 <h2>New User</h2>
                 <div>
-                    <form id="frmNewUser">
+                    <form id="frmNewUser"> <!-- Create a new User -->
                         <label>User ID:</label>
                         <input type="text" id="newUserID"><br>
                         <label>Email:</label>
@@ -131,75 +131,6 @@
 
         </div>
     </div>
-
-
-<script>
-
-    /* function to load all the users from the api */
-
-    document.addEventListener("DOMContentLoaded", () => {
-           loadUsers();
-        })
-
-    function loadUsers() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", '/users/all', true);
-
-            xhr.onload = function () {
-                if (this.status == 200) {
-                    var users = JSON.parse(this.responseText);
-                    //console.log(users)
-
-                    while (userBody.firstChild){
-                        userBody.removeChild(userBody.firstChild)
-                    }
-
-                    var output = '';
-                    for (i in users.users) {
-                        output +=
-                            '<tr>' +
-                            '<td>' + users.users[i].id + '</td>' +
-                            '<td>' + users.users[i].email + '</td>' +
-                            '<td>' + users.users[i].firstName + '</td>' +
-                            '<td>' + users.users[i].lastName + '</td>' +
-                            '<td>' + users.users[i].avatar + '</td>' +
-                            '</tr>'
-                    }
-                    document.getElementById('userBody').innerHTML = output;
-                }
-            }
-            xhr.send()
-        }
-
-        /* Function to add users to the api when user form is entered */
-
-              document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById("btnNewUser").addEventListener("click", addUser)
-        })
-
-        const addUser = function (ev) {
-            ev.preventDefault();
-            //let users = [];
-            let user = {
-                id: document.getElementById("newUserID").value,
-                email: document.getElementById("newUserEmail").value,
-                firstName: document.getElementById("newUserFirstName").value,
-                lastName: document.getElementById("newUserLastName").value
-            }
-            //users.push(user); //pushes to array
-            document.getElementById("frmNewUser").reset();
-            //console.log(users)
-            let json = JSON.stringify(user); //array to json string
-            console.log(json)
-
-            const xhr = new XMLHttpRequest();
-
-            xhr.open("POST", "/users/all", true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.send(json);
-        }
-
-</script>
 </body>
 
 </html>
