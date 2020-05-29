@@ -9,43 +9,37 @@ users = [  # Users dictionary of the default users that can be added to
         "id": 1,
         "firstName": "George",
         "lastName": "Bluth",
-        "email": "george.bluth@reqres.in",
-        "avatar": ""
+        "email": "george.bluth@reqres.in"
     },
     {
         "id": 2,
         "firstName": "Janet",
         "lastName": "Weaver",
-        "email": "janet.weaver@reqres.in",
-        "avatar": ""
+        "email": "janet.weaver@reqres.in"
     },
     {
         "id": 3,
         "firstName": "Emma",
         "lastName": "Wong",
-        "email": "emma.wong@reqres.in",
-        "avatar": ""
+        "email": "emma.wong@reqres.in"
     },
     {
         "id": 4,
         "firstName": "Eve",
         "lastName": "Holt",
-        "email": "eve.holt@reqres.in",
-        "avatar": ""
+        "email": "eve.holt@reqres.in"
     },
     {
         "id": 5,
         "firstName": "Charles",
         "lastName": "Morris",
-        "email": "charles.morris@reqres.in",
-        "avatar": ""
+        "email": "charles.morris@reqres.in"
     },
     {
         "id": 6,
         "firstName": "Tracey",
         "lastName": "Ramos",
-        "email": "tracey.ramos@reqres.in",
-        "avatar": ""
+        "email": "tracey.ramos@reqres.in"
     }
 ]
 

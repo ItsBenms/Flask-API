@@ -9,7 +9,7 @@
             xhr.open("GET", '/users/all', true);
 
             xhr.onload = function () {
-                if (this.status == 200) {
+                if (this.status == 200 && this.readyState == 4) {
                     var users = JSON.parse(this.responseText);
                     //console.log(users)
 
@@ -21,7 +21,7 @@
                             '<td>' + users.users[i].email + '</td>' +
                             '<td>' + users.users[i].firstName + '</td>' +
                             '<td>' + users.users[i].lastName + '</td>' +
-                            '<td>' + users.users[i].avatar + '</td>' +
+                            //'<td>' + users.users[i].avatar + '</td>' +
                             '</tr>'
                     }
                     document.getElementById('userBody').innerHTML = output;
@@ -97,7 +97,7 @@
             document.getElementById("frmUser").reset(); // Resets input form
             //console.log(user.id)
             let json = JSON.stringify(user); //array to json string
-            //console.log(json)
+            console.log(json)
 
             const xhr = new XMLHttpRequest();
 
